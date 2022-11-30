@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const { validateUser, UserModel, validateLogin, createToken } = require("../models/usersModel");
+const { config } = require("../config/secret")
 const router = express.Router();
 
 
@@ -67,7 +68,7 @@ router.get("/myUser", async(req,res) => {
     return res.status(401).json({msg:"You must send to here token"})
   }
   try{
-    let decodeToken = jwt.verify(token,"monkeysSecret");
+    let decodeToken = jwt.verify(token, config.tokenSecret);
     let data = await UserModel.findOne({_id:decodeToken._id}, {password:0})
   
     res.json(data);

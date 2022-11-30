@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+const { config } = require("../config/secret");
+
 exports.auth = (req,res,next) => {
     let token = req.header("x-api-key");
     if(!token){

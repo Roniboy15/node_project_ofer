@@ -7,7 +7,7 @@ const toySchema = new mongoose.Schema({
     category_id: String,
     img_url: String,
     price: Number,
-    user_id: Number
+    user_id: String
 })
 
 exports.ToyModel = mongoose.model("toys", toySchema);

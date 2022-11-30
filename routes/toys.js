@@ -1,6 +1,7 @@
 const express = require("express");
 const { FoodModel } = require("../models/foodModel");
 const { ToyModel, validateToy, validateToyPut } = require("../models/toysModel");
+const { auth } = require("../middlewares/auth");
 const router = express.Router();
 
 
@@ -24,6 +25,29 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 
+})
+
+//Route that only fetches the data of the logged in users
+
+router.get("/userList", auth, async(req,res) => {
+
+  let perPage = Number(req.query.perPage) || 4;
+  let page = Number(req.query.page) || 1
+  let sort = req.query.sort || "_id";
+  let reverse = req.query.reverse == "yes" ? 1 : -1;
+
+  try{  
+    let data = await ToyModel
+    .find({user_id:req.tokenData._id})
+    .limit(perPage)
+    .skip((page-1) * perPage )
+    .sort({[sort]:reverse})
+    res.json(data); 
+  }
+  catch(err){
+    console.log(err)
+    res.status(500).json(err)
+  }
 })
 
 //Route Bet:
