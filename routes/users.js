@@ -4,41 +4,40 @@ const jwt = require("jsonwebtoken")
 const { validateUser, UserModel, validateLogin, createToken } = require("../models/usersModel");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+
+//route to sign up a new user:
+
+router.post("/", async (req, res) => {
+
+  let validBody = validateUser(req.body);
+
+  if (validBody.error) {
+    return res.status(400).json(validBody.error.details);
+  }
 
   try {
-    let data = await UserModel.find({});
-    res.json(data);
+    let user = new UserModel(req.body)
+    user.password = await bcrypt.hash(user.password, 10)
+    await user.save();
+    user.password = "*****"
+    res.status(201).json(user)
   }
   catch (err) {
-    console.log(err)
-    res.status(500).json(err)
+    if (err.code == 11000) {
+      return res.status(401).json({ msg:"Email signed up already, do you want to log in?", code: 11000 })
+    }
+    console.log(err);
+    res.status(500).json(err);
   }
 })
 
-router.get("/myUser", async(req,res) => {
-  // req.query , req.params, req.body , req.header
-  let token = req.header("x-api-key");
-  // בודק אם בכלל נשלח בהידר טוקן
-  if(!token){
-    return res.status(401).json({msg:"You must send to here token"})
-  }
-  try{
-    let decodeToken = jwt.verify(token,"monkeysSecret");
-    let data = await UserModel.findOne({_id:decodeToken._id}, {password:0})
-  
-    res.json(data);
-  }
-  catch(err){
-    res.json({msg:"Token invalid or expired"})
-  }
-})
+//Route to log in an existing user and for the user to retrieve a token:
 
 router.post("/login", async (req, res) => {
 
   let validBody = validateLogin(req.body);
   if (validBody.error) {
-    return res.status(401).json(validBody.error.details);
+    return res.status(400).json(validBody.error.details);
   }
   try {
     let user = await UserModel.findOne({ email: req.body.email })
@@ -58,28 +57,25 @@ router.post("/login", async (req, res) => {
   }
 })
 
-router.post("/", async (req, res) => {
+//Route to receive thee logged-in user's information:
 
-  let validBody = validateUser(req.body);
+router.get("/myUser", async(req,res) => {
 
-  if (validBody.error) {
-    return res.status(400).json(validBody.error.details);
+  let token = req.header("x-api-key");
+
+  if(!token){
+    return res.status(401).json({msg:"You must send to here token"})
   }
-
-  try {
-    let user = new UserModel(req.body)
-    user.password = await bcrypt.hash(user.password, 10)
-    await user.save();
-    user.password = "*****"
-    res.status(201).json(user)
+  try{
+    let decodeToken = jwt.verify(token,"monkeysSecret");
+    let data = await UserModel.findOne({_id:decodeToken._id}, {password:0})
+  
+    res.json(data);
   }
-  catch (err) {
-    if (err.code == 11000) {
-      return res.status(400).json({ msg: "Email already in system", code: 11000 })
-    }
-    console.log(err);
-    res.status(500).json(err);
+  catch(err){
+    res.json({msg:"Token invalid or expired"})
   }
 })
+
 
 module.exports = router;

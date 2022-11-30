@@ -8,13 +8,16 @@ const userSchema = new mongoose.Schema({
   password: String,
   date_created: {
     type: Date, default: Date.now()
+  },
+  role:{
+    type:String, default:"user"
   }
 })
 
 exports.UserModel = mongoose.model("users", userSchema);
 
 exports.createToken = (_userId) => {
-  let token = jwt.sign({ _id: _userId }, "monkeysSecret", { expiresIn: "60min" });
+  let token = jwt.sign({ _id: _userId }, config.tokenSecret, { expiresIn: "60min" });
   return token;
 }
 

@@ -1,138 +1,147 @@
 const express = require("express");
+const { FoodModel } = require("../models/foodModel");
 const { ToyModel, validateToy, validateToyPut } = require("../models/toysModel");
 const router = express.Router();
+
 
 //Route Alef
 router.get("/", async (req, res) => {
 
-    let perPage = Number(req.query.perPage) || 10;
-    let page = Number(req.query.page) || 1;
-    let sort = req.query.sort || "price";
-    let reverse = req.query.reverse == "yes" ? -1 : 1;
+  let perPage = Number(req.query.perPage) || 10;
+  let page = Number(req.query.page) || 1;
+  let sort = req.query.sort || "price";
+  let reverse = req.query.reverse == "yes" ? -1 : 1;
 
-    try {
-        let data = await ToyModel.find({})
-            .limit(perPage)
-            .skip((page - 1) * perPage)
-            .sort({ [sort]: reverse })
-        res.json(data);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
+  try {
+    let data = await ToyModel.find({})
+      .limit(perPage)
+      .skip((page - 1) * perPage)
+      .sort({ [sort]: reverse })
+    res.json(data);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 
 })
 
 //Route Bet:
 
-router.get("/search", async (req,res) => {
+router.get("/search", async (req, res) => {
 
-    let perPage = Number(req.query.perPage) || 4;
-    let page = Number(req.query.page) || 1;
-    let sort = req.query.sort || "price";
-    let reverse = req.query.reverse == "yes" ? -1 : 1;
+  let perPage = Number(req.query.perPage) || 4;
+  let page = Number(req.query.page) || 1;
+  let sort = req.query.sort || "price";
+  let reverse = req.query.reverse == "yes" ? -1 : 1;
 
-    try {
-      let searchQ = req.query.s;
-      let searchExp = new RegExp(searchQ, "i");
+  try {
+    let searchQ = req.query.s;
+    let searchExp = new RegExp(searchQ, "i");
 
-      let data = await ToyModel.find({name:searchExp} && {info:searchExp})
+    let data = await ToyModel.find({ name: searchExp } && { info: searchExp })
       .limit(perPage)
-      .skip((page-1) * perPage)
-      .sort({[sort]:reverse})
-      res.json(data);
-    }
-    catch (err) {
-      console.log(err)
-      res.status(500).json(err)
-    }
-  })
+      .skip((page - 1) * perPage)
+      .sort({ [sort]: reverse })
+    res.json(data);
+  }
+  catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
 
-  //Route Gimel:
+//Route Gimel:
 
-  router.get("/category/:catname", async (req,res) => {
+router.get("/category/:catname", async (req, res) => {
 
-    let perPage = Number(req.query.perPage) || 4;
-    let page = Number(req.query.page) || 1;
-    let sort = req.query.sort || "price";
-    let reverse = req.query.reverse == "yes" ? -1 : 1;
+  let perPage = Number(req.query.perPage) || 4;
+  let page = Number(req.query.page) || 1;
+  let sort = req.query.sort || "price";
+  let reverse = req.query.reverse == "yes" ? -1 : 1;
 
-    try {
-      let cat = req.params.catname;
-      let catExp = new RegExp(cat, "i");
+  try {
+    let cat = req.params.catname;
+    let catExp = new RegExp(cat, "i");
 
 
-      let data = await ToyModel.find({category:catExp})
+    let data = await ToyModel.find({ category_id: catExp })
       .limit(perPage)
-      .skip((page-1) * perPage)
-      .sort({[sort]:reverse})
-      res.json(data);
-    }
-    catch (err) {
-      console.log(err)
-      res.status(500).json(err)
-    }
-  })
+      .skip((page - 1) * perPage)
+      .sort({ [sort]: reverse })
+    res.json(data);
+  }
+  catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
 
-  //Route Dalet
+//Route Dalet
 
-  router.post("/", async (req,res) => {
+router.post("/", auth, async (req, res) => {
 
-    let validateBody = validateToy(req.body)
+  let validateBody = validateToy(req.body);
 
-    if (!validateBody) {
-        return res.status(400).json(validateBody.details);
-      }
+  if (validateBody.error) {
+    return res.status(400).json(validateBody.error.details);
+  }
 
-      try {
-    
-        let toy = new ToyModel(req.body)
-        await toy.save()
-        res.status(201).json(toy)
+  try {
 
-      }
+    let toy = new ToyModel(req.body);
 
-      catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-      }
-    
-  })
+    toy.user_id = req.tokenData._id;
 
-  //Route Hei
+    await toy.save()
 
-  router.put("/:idEdit",async(req,res) => {
-    let validBody = validateToyPut(req.body);
+    res.status(201).json(toy)
 
-    if(validBody.error){
-      return res.status(400).json(validBody.error.details);
-    }
-    try{
-      let idEdit = req.params.idEdit;
-      let data = await ToyModel.updateOne({_id:idEdit},req.body)
-      res.json(data);
-    }
-    catch(err){
-      console.log(err)
-      res.status(500).json(err)
-    }
-  })
+  }
 
-  router.delete("/:delId", async (req, res) => {
-    
-    let idDdel = req.params.delId;
-    try{
-     let data = await ToyModel.deleteOne({_id:idDdel})
-     res.json(data)
-    }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
-    catch (err) {
-      console.log(err);
-      res.status(500).json(err);
+//Route Hei
 
-    }
-  })
+router.put("/:idEdit", auth, async (req, res) => {
+  let validBody = validateToyPut(req.body);
+
+  if (validBody.error) {
+    return res.status(400).json(validBody.error.details);
+  }
+
+  try {
+    let idEdit = req.params.idEdit;
+    let data = await ToyModel.updateOne({ _id: idEdit, user_id: req.tokenData._id }, req.body)
+    res.json(data);
+  }
+  catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
+//Route Vav
+
+router.delete("/:delId", auth, async (req, res) => {
+
+  let idDdel = req.params.delId;
+
+  try {
+    let data = await ToyModel.deleteOne({ _id: idDdel, user_id: req.tokenData._id })
+    res.json(data, { msg: "successfully deleted" });
+  }
+
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err, { msg: "Something went wrong" });
+
+  }
+})
 
 
 module.exports = router;
