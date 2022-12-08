@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
   }
 })
 
-//Route to receive thee logged-in user's information:
+//Route to receive the logged-in user's information:
 
 router.get("/myUser", async(req,res) => {
 

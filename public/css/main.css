@@ -1,0 +1,54 @@
+/* COLORS / BACKGROUNDS*/
+body {
+    background-color: rgba(0, 0, 0, 0.793);
+}
+
+.all-pages {
+    background-color: rgba(255, 255, 255, 0.401);
+}
+
+/*DISPLAY*/
+#home_id {
+    display: flex;
+}
+
+#routes_id,
+#info_id,
+#contact_id {
+    display: flex;
+}
+
+/*BUTTONS NAVBAR*/
+.btns-nav {
+    min-width: 10vw;
+}
+
+@media only screen and (max-width:990px) {
+    .btns-nav {
+        min-width: 33vw;
+    }
+}
+
+/*iFrame*/
+
+.row-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.second-row {
+    flex-grow: 1;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*ROUTES GET Authentification H3 */
+@media only screen and (max-width:765px) {
+#auth_id {
+font-size: small;
+}
+}

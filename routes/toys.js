@@ -8,7 +8,7 @@ const router = express.Router();
 //Route Alef
 router.get("/", async (req, res) => {
 
-  let perPage = Number(req.query.perPage) || 10;
+  let perPage = Number(req.query.perPage) || 4;
   let page = Number(req.query.page) || 1;
   let sort = req.query.sort || "price";
   let reverse = req.query.reverse == "yes" ? -1 : 1;
@@ -54,7 +54,7 @@ router.get("/userList", auth, async(req,res) => {
 
 router.get("/search", async (req, res) => {
 
-  let perPage = Number(req.query.perPage) || 4;
+  let perPage = Number(req.query.perPage) ||4;
   let page = Number(req.query.page) || 1;
   let sort = req.query.sort || "price";
   let reverse = req.query.reverse == "yes" ? -1 : 1;
