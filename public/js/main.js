@@ -48,10 +48,13 @@ const routes = () => {
 const routesOptions = () => {
 
         let select_method = document.querySelector("#method_select");
+        let subtitle_request = document.querySelector("#id_request");
+
 
         select_method.addEventListener("change", () => {
 
                 if (select_method.value == "get") {
+                        subtitle_request.innerHTML = 'You chose: ' + select_method.value;
 
                         document.querySelector('#get_row').style.display = "flex";
 
@@ -61,7 +64,7 @@ const routesOptions = () => {
 
                 }
                 if (select_method.value == "post") {
-
+                        subtitle_request.innerHTML = 'You chose: ' + select_method.value;
                         document.querySelector('#post_row').style.display = "flex";
 
                         document.querySelector('#get_row').style.display = "none";
@@ -70,7 +73,7 @@ const routesOptions = () => {
 
                 }
                 if (select_method.value == "put") {
-
+                        subtitle_request.innerHTML = 'You chose: ' + select_method.value;
                         document.querySelector('#put_row').style.display = "flex";
 
                         document.querySelector('#post_row').style.display = "none";
@@ -79,7 +82,7 @@ const routesOptions = () => {
 
                 }
                 if (select_method.value == "delete") {
-
+                        subtitle_request.innerHTML = 'You chose: ' + select_method.value;
                         document.querySelector('#delete_row').style.display = "flex";
 
                         document.querySelector('#post_row').style.display = "none";
