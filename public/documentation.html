@@ -44,8 +44,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <button id="btn_routes_id"
-                                        class="btns-nav nav-link btn border-0 text-bg-danger m-2 p-2"
-                                        href="#">Routes</button>
+                                        class="btns-nav nav-link btn border-0 text-bg-danger m-2 p-2">Routes</button>
                                 </li>
                                 <li class="nav-item">
                                     <button id="btn_info_id"
@@ -71,23 +70,40 @@
                             <h1>API - Documentation</h1>
                         </div>
                         <div class="col-md-10 col-12 justify-content-center">
-                            <div class="row">
-
+                            <div class="row justify-content-center">
 
                                 <div class="col-md-6 col-11 p-4">
-                                <h5 class="text-start fw-light fs-4">
-                                    If you have never used API's, or are still uncertain with the various requests, like GET, POST, DELETE etc. I recommend you to watch the following clip on youtube...
-                                </h5>
+                                    <h5 class="text-start fw-light fs-4">
+                                        If you have never used API's, or are still uncertain with the various requests,
+                                        like GET, POST, DELETE etc. I recommend you to watch the following clip on
+                                        youtube...
+                                    </h5>
                                 </div>
                                 <div class="col-md-6 col-12 p-4">
-                        
-                                        <div class="row-container">
-                                            <iframe class="second-row" id="id_iframe" width="560" height="315"
+
+                                    <div class="row-container">
+                                        <iframe class="second-row" id="id_iframe" width="560" height="315"
                                             src="https://www.youtube.com/embed/6sUbt-Qp6Pg" title="YouTube video player"
                                             frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
-                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-10 p-4 m-3 bg-light bg-opacity-25 rounded">
+                                    <h4>A few general rules...</h4>
+                                    <br>
+                                    <h5 class="text-start">- Whenever you see this: [] it means that you have to fill in
+                                        something into those brackets. You never ever acctually write the brackets as
+                                        part of your code!</h5>
+                                    <br>
+                                    <h5 class="text-start">
+                                        - You can go to the folder "Routes" and choose the methods to use this API.
+                                        There is either GET, POST, PUT or DELETE.
+                                    </h5>
+                                    <br>
+                                    <h5 class="text-start">
+                                        - Wherever you can click - do it! It will lead you to the data fetched from the database. Of course, for that you have to be connected with the database.
+                                    </h5>
                                 </div>
                             </div>
 
@@ -102,7 +118,7 @@
                             <h1>Routes</h1>
                         </div>
                         <div class="col-md-3 col-5 p-2 m-2 justify-content-center">
-                            <select class="form-select" name="" id="routes_select">
+                            <select class="form-select" name="" id="method_select">
                                 <option value="get">GET</option>
                                 <option value="post">POST</option>
                                 <option value="put">PUT</option>
@@ -110,109 +126,324 @@
                             </select>
                         </div>
 
+
                         <div class="col-md-6 col-11 p-1 mx-md-3 m-auto">
                             <h4 class="text-light" id="id_request">Please Choose a request...</h4>
                         </div>
 
-                        <div class="get-request col-md-9 col-11 p-2 m-3 justify-content-center">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
-                                        <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
-                                    </div>
-                                    <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
-                                        <a href="/toys" class="text-black p-2 shadow rounded">/toys</a>
-                                    </div>
-                                    <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
-                                        <div class="list-group p-1 bg-black p-1 rounded-4">
 
-                                            <a href="/toys/?perPage=2" class="list-group-item list-group-item-action">
-                                                <h5>Amount of Toys</h5>/?perPage=[number]
-                                            </a>
-                                            <a href="/toys/?perPage=3&page=2"
-                                                class="list-group-item list-group-item-action">
-                                                <h5>Number of Page</h5>/?page=[number]
-                                            </a>
-                                            <a href="/toys/?sort=price" class="list-group-item list-group-item-action">
-                                                <h5>Sort the List</h5>/?sort=[sort criteria]
-                                            </a>
-                                            <a href="/toys/?sort=price&reverse=yes"
-                                                class="list-group-item list-group-item-action">
-                                                <h5>Sort Direction</h5>/?reverse=[yes or no]
-                                            </a>
+                        <div id="get_row" class="justify-content-center row">
+
+
+                            <div class="get-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/toys" class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black p-1 rounded-4">
+
+                                                <a href="/toys/?perPage=2"
+                                                    class="list-group-item list-group-item-action">
+                                                    <h5>Amount of Toys</h5>/?perPage=[number]
+                                                </a>
+                                                <a href="/toys/?perPage=3&page=2"
+                                                    class="list-group-item list-group-item-action">
+                                                    <h5>Number of Page</h5>/?page=[number]
+                                                </a>
+                                                <a href="/toys/?sort=price"
+                                                    class="list-group-item list-group-item-action">
+                                                    <h5>Sort the List</h5>/?sort=[sort criteria]
+                                                </a>
+                                                <a href="/toys/?sort=price&reverse=yes"
+                                                    class="list-group-item list-group-item-action">
+                                                    <h5>Sort Direction</h5>/?reverse=[yes or no]
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="get-request col-md-9 col-11 p-2 m-3  justify-content-center">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
-                                        <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
-                                    </div>
-                                    <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
-                                        <a href="/toys/search" class="text-black p-2 shadow rounded">/toys</a>
-                                    </div>
-                                    <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
-                                        <div class="list-group p-1 bg-black p-1 rounded-4">
+                            <div id="id_get" class="get-request col-md-9 col-11 p-2 m-3  justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/toys/search" class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black p-1 rounded-4">
 
-                                            <a href="/toys/search/?s=classic"
-                                                class="list-group-item list-group-item-action">
-                                                <h5>Specific Search</h5>/search/?s=[any letter/word]
-                                            </a>
+                                                <a href="/toys/search/?s=classic"
+                                                    class="list-group-item list-group-item-action">
+                                                    <h5>Specific Search</h5>/search/?s=[any letter/word]
+                                                </a>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="get-request col-md-9 col-11 p-2 m-3 justify-content-center">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
-                                        <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
-                                    </div>
-                                    <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
-                                        <a href="/toys/category/classic" class="text-black p-2 shadow rounded">/toys</a>
-                                    </div>
-                                    <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
-                                        <div class="list-group p-1 bg-black p-1 rounded-4">
+                            <div id="id_get" class="col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/toys/category/classic"
+                                                class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black p-1 rounded-4">
 
-                                            <a href="/toys/category/sports"
-                                                class="list-group-item list-group-item-action">
-                                                <h5>Search according to Category</h5>/category/[name of category]
-                                            </a>
+                                                <a href="/toys/category/sports"
+                                                    class="list-group-item list-group-item-action">
+                                                    <h5>Search according to Category</h5>/category/[name of category]
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="get-request col-md-9 col-11 p-2 m-3 justify-content-center">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
-                                        <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
-                                    </div>
-                                    <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
-                                        <a href="/toys" class="text-black p-2 shadow rounded">/toys</a>
-                                    </div>
-                                    <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
-                                        <div class="list-group p-1 bg-black rounded-4">
 
-                                            <a href="/toys/userList"
-                                                class="list-group-item list-group-item-action">
-                                                <h5>Receive only Toys that you uploaded</h5>/userList<br>
-                                                <h5>This will require a <span class="text-success">Login</span> and sending  a token to the endpoint</h5>
-                                                <h3 id="auth_id" class="text-success shadow rounded p-2 bg-opacity-25 ">AUTHENTIFICATION</h3>
-                                            </a>
+                            <div id="id_et" class="col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/toys" class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a href="/toys/userList" class="list-group-item list-group-item-action">
+                                                    <h5>Receive only Toys that you uploaded</h5><br>/userList<br>
+                                                    <h5>This will require a <span class="text-success">Login</span> and
+                                                        sending a token to the endpoint</h5>
+                                                    <h3 id="auth_id"
+                                                        class="text-success shadow rounded p-2 bg-opacity-25 ">
+                                                        AUTHENTIFICATION</h3>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="get-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-success shadow rounded p-1 bg-opacity-25">USERS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/users/myUser" class="text-black p-2 shadow rounded">/users</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a href="/toys/userList" class="list-group-item list-group-item-action">
+                                                    <h5>Receive Information about the logged in User</h5><br>/myUser<br>
+                                                    <h5>This will require a <span class="text-success">Login</span> and
+                                                        sending a token to the endpoint</h5>
+                                                    <h3 id="auth_id"
+                                                        class="text-success shadow rounded p-2 bg-opacity-25 ">
+                                                        AUTHENTIFICATION</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div id="id_delete" class="col-md-9 col-11 p-2 m-3 border justify-content-center">
+
+                        <div id="post_row" class="justify-content-center row">
+
+                            <div class="post-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-success shadow rounded p-1 bg-opacity-25">USERS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/users/myUser" class="text-black p-2 shadow rounded">/users</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a href="/users" class="list-group-item list-group-item-action">
+                                                    <h5>Sign Up a new User</h5><br>/<br>
+                                                    <h5>This will require sending information about the user to the
+                                                        database
+                                                    </h5>
+                                                    <br>
+                                                    <h5 class="text-start">- Name</h5>
+                                                    <h5 class="text-start">- Email</h5>
+                                                    <h5 class="text-start">- Password</h5>
+                                                    <br>
+                                                    <h3 id="auth_id"
+                                                        class="text-warning shadow rounded p-2 bg-opacity-25 ">
+                                                        VALIDATION</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="post-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-success shadow rounded p-1 bg-opacity-25">USERS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a href="/users/login" class="text-black p-2 shadow rounded">/users</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a href="/users/login" class="list-group-item list-group-item-action">
+                                                    <h5>Login for existing User</h5><br>/login<br>
+                                                    <h5>This will require sending following two informations to the
+                                                        endpoint:</h5>
+                                                    <br>
+                                                    <h5 class="text-start">- Email</h5>
+                                                    <h5 class="text-start">- Password</h5>
+                                                    <br>
+                                                    <h3 id="auth_id"
+                                                        class="text-warning shadow rounded p-2 bg-opacity-25 ">
+                                                        VALIDATION</h3>
+                                                    <br>
+                                                    <h5>You will receive back a created <span
+                                                            class="text-success">Token</span></h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a class="list-group-item list-group-item-action">
+                                                    <h5>Creating a New Toy</h5><br>/<br>
+                                                    <h5>This will require sending information about the Toy to the
+                                                        database
+                                                    </h5>
+                                                    <br>
+                                                    <h5 class="text-start">- Name</h5>
+                                                    <h5 class="text-start">- Info</h5>
+                                                    <h5 class="text-start">- Category</h5>
+                                                    <h5 class="text-start">- Image</h5>
+                                                    <h5 class="text-start">- Price</h5>
+                                                    <br>
+                                                    <button id="id_info_btn" class="btn btn-warning p-2 m-2">More Info
+                                                        about
+                                                        Validation</button>
+
+                                                    <h3 id="auth_id"
+                                                        class="text-warning shadow rounded p-2 bg-opacity-25 ">
+                                                        VALIDATION</h3>
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="put_row" class="justify-content-center row">
+
+                            <div class="put-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a class="list-group-item list-group-item-action">
+                                                    <h5>Editing an existing Toy</h5><br>/[_id]<br>
+                                                    <h5>This will require you sending the ID of the Toy as a parameter
+                                                        in
+                                                        the URL
+                                                    </h5>
+
+
+                                                    <h3 id="auth_id"
+                                                        class="text-warning shadow rounded p-2 bg-opacity-25 ">
+                                                        VALIDATION</h3>
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="delete_row" class="justify-content-center row">
+
+                            <div class="delete-request col-md-9 col-11 p-2 m-3 justify-content-center">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-2 col-5 p-1 m-1 text-center justify-content-center">
+                                            <h3 class="text-danger shadow rounded p-1 bg-opacity-25">TOYS</h3>
+                                        </div>
+                                        <div class="col-md-3 col-5 p-2 m-2 text-center justify-content-center">
+                                            <a class="text-black p-2 shadow rounded">/toys</a>
+                                        </div>
+                                        <div class="col-md-6 col-12 p-1 m-1 text-center justify-content-center">
+                                            <div class="list-group p-1 bg-black rounded-4">
+
+                                                <a class="list-group-item list-group-item-action">
+                                                    <h5>Deleting an existing Toy</h5><br>/[_id]<br>
+                                                    <h5>This will require you sending the ID of the Toy as a parameter
+                                                        in
+                                                        the URL
+                                                    </h5>
+
+
+                                                    <h3 id="auth_id"
+                                                        class="text-warning shadow rounded p-2 bg-opacity-25 ">
+                                                        VALIDATION</h3>
+                                                    <br>
+                                                    <h5>Here, it validates if you are the User that created the Toy that
+                                                        you
+                                                        want to delete</h5>
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -221,7 +452,48 @@
             </div>
             <div class="col-md-9 col-11 shadow-lg text-center p-4 m-2 rounded-3 all-pages justify-content-center"
                 id="info_id">
-                <h1>Further Information</h1>
+                <div class="conatiner">
+                    <div class="row justify-content-center">
+                        <div class="col-12 p-4">
+                            <h1>Further Information</h1>
+                        </div>
+
+                        <div class="col-11  bg-light bg-opacity-25 rounded p-4 m-2 rounded-4">
+                            <h3 style="width: fit-content;"
+                                class=" text-warning bg-light shadow-lg rounded p-2 bg-opacity-25">
+                                VALIDATION</h3>
+                            <br>
+                            <p>
+                            <h4 class="text-start">Following is the exact way to <span class="text-danger">post</span> a
+                                new Toy:</h4><br>
+                            <h5 class="text-start">{<br><br>
+                                "name": "[string: min. 2 / max. 20]",<br>
+                                "info": "[string: min. 2 / max. 1000]",<br>
+                                "category_id": "[string: min. 2 / max. 1000]",<br>
+                                "img_url": "[string: min. 2 / max. 1000]",<br>
+                                "price": "[number: min. 1 / max. 10000]"<br>
+                                <br>
+                                }
+                            </h5>
+                            </p>
+                            <br>
+                            <p>
+                            <h4 class="text-start">Following is the exact way to <span class="text-success">post</span>
+                                a new User:</h4><br>
+                            <h5 class="text-start">{<br><br>
+                                "name": "[string: min. 2 / max.150]",<br>
+                                "info": "[string: min. 2 / max. 150]",<br>
+                                "category_id": "[string: min. 3 / max. 150]"<br>
+
+                                <br>
+                                }
+                            </h5>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-9 col-11 shadow-lg text-center p-4 m-2 rounded-3 all-pages justify-content-center"
                 id="contact_id">

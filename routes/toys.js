@@ -103,7 +103,7 @@ router.get("/category/:catname", async (req, res) => {
 
 //Route Dalet
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
 
   let validateBody = validateToy(req.body);
 
