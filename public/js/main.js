@@ -82,8 +82,8 @@ const btnsEvents = () => {
         let route = document.querySelector("#info_id");
 
         btn_info.addEventListener("click", () => {
-                route.style.display = "flex";
-                window.scrollTo(0, 10000)
+                window.location.href = "/information.html";
+
         })
 }
 
