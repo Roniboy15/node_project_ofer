@@ -10,36 +10,19 @@ const routes = () => {
         let btn_home = document.querySelector("#btn_home_id");
         let btn_routes = document.querySelector("#btn_routes_id");
         let btn_info = document.querySelector("#btn_info_id");
-        let btn_contact = document.querySelector("#btn_contact_id");
 
         btn_home.addEventListener("click", () => {
-                document.querySelector("#home_id").style.display = "flex";
-
-                document.querySelector("#routes_id").style.display = "none";
-                document.querySelector("#info_id").style.display = "none";
-                document.querySelector("#contact_id").style.display = "none";
+                window.location.href = "/documentation.html";
         })
         btn_routes.addEventListener("click", () => {
-                document.querySelector("#routes_id").style.display = "flex";
+                window.location.href = "/routes.html";
 
-                document.querySelector("#home_id").style.display = "none";
-                document.querySelector("#info_id").style.display = "none";
-                document.querySelector("#contact_id").style.display = "none";
         })
         btn_info.addEventListener("click", () => {
-                document.querySelector("#info_id").style.display = "flex";
+                window.location.href = "/information.html";
 
-                document.querySelector("#routes_id").style.display = "none";
-                document.querySelector("#home_id").style.display = "none";
-                document.querySelector("#contact_id").style.display = "none";
         })
-        btn_contact.addEventListener("click", () => {
-                document.querySelector("#contact_id").style.display = "flex";
-
-                document.querySelector("#home_id").style.display = "none";
-                document.querySelector("#info_id").style.display = "none";
-                document.querySelector("#routes_id").style.display = "none";
-        })
+       
 
 
 }

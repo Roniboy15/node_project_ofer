@@ -16,7 +16,7 @@ body {
 #routes_id,
 #info_id,
 #contact_id {
-    display: none;
+    display: flex;
 }
 /*METHODS WITHIN ROUTES - DISPLAY*/
 #get_row {

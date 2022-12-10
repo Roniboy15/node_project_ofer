@@ -58,54 +58,51 @@
                 </nav>
 
             </div>
+            
             <div class="col-md-9 col-11 shadow-lg text-center p-4 m-2 rounded-3 all-pages justify-content-center"
-                id="home_id">
-                <div class="container-fluid">
+                id="info_id">
+                <div class="conatiner">
                     <div class="row justify-content-center">
-                        <div class="col-md-9 col-12 justify-content-center p-3">
-                            <h1>API - Documentation</h1>
+                        <div class="col-12 p-4">
+                            <h1>Further Information</h1>
                         </div>
-                        <div class="col-md-10 col-12 justify-content-center">
-                            <div class="row justify-content-center">
 
-                                <div class="col-md-6 col-11 p-4">
-                                    <h5 class="text-start fw-light fs-4">
-                                        If you have never used API's, or are still uncertain with the various requests,
-                                        like GET, POST, DELETE etc. I recommend you to watch the following clip on
-                                        youtube...
-                                    </h5>
-                                </div>
-                                <div class="col-md-6 col-12 p-4">
+                        <div class="col-11  bg-light bg-opacity-25 rounded p-4 m-2 rounded-4">
+                            <h3 style="width: fit-content;"
+                                class=" text-warning bg-light shadow-lg rounded p-2 bg-opacity-25">
+                                VALIDATION</h3>
+                            <br>
+                            <p>
+                            <h4 class="text-start">Following is the exact way to <span class="text-danger">post</span> a
+                                new Toy:</h4><br>
+                            <h5 class="text-start">{<br><br>
+                                "name": "[string: min. 2 / max. 20]",<br>
+                                "info": "[string: min. 2 / max. 1000]",<br>
+                                "category_id": "[string: min. 2 / max. 1000]",<br>
+                                "img_url": "[string: min. 2 / max. 1000]",<br>
+                                "price": "[number: min. 1 / max. 10000]"<br>
+                                <br>
+                                }
+                            </h5>
+                            </p>
+                            <br>
+                            <p>
+                            <h4 class="text-start">Following is the exact way to <span class="text-success">post</span>
+                                a new User:</h4><br>
+                            <h5 class="text-start">{<br><br>
+                                "name": "[string: min. 2 / max.150]",<br>
+                                "info": "[string: min. 2 / max. 150]",<br>
+                                "category_id": "[string: min. 3 / max. 150]"<br>
 
-                                    <div class="row-container">
-                                        <iframe class="second-row" id="id_iframe" width="560" height="315"
-                                            src="https://www.youtube.com/embed/6sUbt-Qp6Pg" title="YouTube video player"
-                                            frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-10 p-4 m-3 bg-light bg-opacity-25 rounded">
-                                    <h4>A few general rules...</h4>
-                                    <br>
-                                    <h5 class="text-start">- Whenever you see this: [] it means that you have to fill in
-                                        something into those brackets. You never ever acctually write the brackets as
-                                        part of your code!</h5>
-                                    <br>
-                                    <h5 class="text-start">
-                                        - You can go to the folder "Routes" and choose the methods to use this API.
-                                        There is either GET, POST, PUT or DELETE.
-                                    </h5>
-                                    <br>
-                                    <h5 class="text-start">
-                                        - Wherever you can click - do it! It will lead you to the data fetched from the database. Of course, for that you have to be connected with the database.
-                                    </h5>
-                                </div>
-                            </div>
+                                <br>
+                                }
+                            </h5>
+                            </p>
 
                         </div>
                     </div>
                 </div>
+
             </div>
             
         </div>

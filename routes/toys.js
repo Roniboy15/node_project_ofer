@@ -1,5 +1,4 @@
 const express = require("express");
-const { FoodModel } = require("../models/foodModel");
 const { ToyModel, validateToy, validateToyPut } = require("../models/toysModel");
 const { auth } = require("../middlewares/auth");
 const router = express.Router();
