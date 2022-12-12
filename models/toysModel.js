@@ -24,14 +24,3 @@ exports.validateToy = (reqBody) => {
 
 }
 
-exports.validateToyPut = (reqBody) => {
-    let joiSchema = Joi.object({
-        name: Joi.string().min(2).max(20),
-        info: Joi.string().min(2).max(1000),
-        category_id: Joi.string().min(2).max(1000),
-        img_url: Joi.string().min(2).max(1000),
-        price: Joi.number().min(1).max(10000),
-    })
-    return joiSchema.validate(reqBody);
-
-}

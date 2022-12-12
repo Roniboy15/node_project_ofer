@@ -10,13 +10,20 @@ router.get("/", async (req, res) => {
   let perPage = Number(req.query.perPage) || 4;
   let page = Number(req.query.page) || 1;
   let sort = req.query.sort || "price";
+  if(sort == "min") sort = "price";
   let reverse = req.query.reverse == "yes" ? -1 : 1;
+  if(sort == "max"){
+    sort = "price";
+    reverse = -1;
+  }
+  
 
   try {
     let data = await ToyModel.find({})
       .limit(perPage)
       .skip((page - 1) * perPage)
       .sort({ [sort]: reverse })
+      
     res.json(data);
   }
   catch (err) {
